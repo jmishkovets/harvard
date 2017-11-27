@@ -1,0 +1,16 @@
+# OS X System files
+.DS_Store
+
+# Xcode
+## Build generated
+build/
+DerivedData
+
+## Various settings
+*.pbxuser
+!default.pbxuser
+xcuserdata
+
+## Other
+*.xccheckout
+*.xcuserstate
