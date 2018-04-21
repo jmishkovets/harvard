@@ -27,16 +27,26 @@ class ThemeChooserViewController: UIViewController, UISplitViewControllerDelegat
         guard let button = sender as? UIButton else { return }
     
         if let concentrationViewConroller = splitViewDetailConcentrationViewController {
-            if let themeName = button.currentTitle, let theme = themes[themeName] {
-                concentrationViewConroller.theme = theme
-            }
+            setThemeForViewControllerIfValid(viewController: concentrationViewConroller, button: button)
         } else if let concentrationViewConroller = lastSequedToConcentrationViewController {
-            if let themeName = button.currentTitle, let theme = themes[themeName] {
-                concentrationViewConroller.theme = theme
-            }
+            setThemeForViewControllerIfValid(viewController: concentrationViewConroller, button: button)
             navigationController?.pushViewController(concentrationViewConroller, animated: true)
         } else {
             performSegue(withIdentifier: "Choose Theme", sender: sender)
+        }
+    }
+    
+    private func themeFromButtonTitle(button: UIButton) -> String? {
+        if let themeName = button.currentTitle, let theme = themes[themeName] {
+            return theme
+        }
+        
+        return nil
+    }
+    
+    private func setThemeForViewControllerIfValid(viewController: ConcentrationViewController, button: UIButton) {
+        if let theme = themeFromButtonTitle(button: button) {
+            viewController.theme = theme
         }
     }
     
