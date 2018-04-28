@@ -12,6 +12,12 @@ class ConcentrationViewController: UIViewController {
     
     private lazy var game = Concentration(numberOfPairsOfCards: numberOfPairsOfCards)
     
+    var theme: Theme? {
+        didSet {
+            applyTheme()
+        }
+    }
+    
     var numberOfPairsOfCards: Int {
         return (cardButtons.count + 1) / 2
     }
@@ -20,15 +26,6 @@ class ConcentrationViewController: UIViewController {
         didSet {
             updateFlipCountLabel()
         }
-    }
-    
-    private func updateFlipCountLabel() {
-        let attributes: [NSAttributedStringKey: Any] = [
-            .strokeWidth: 1.0,
-            .strokeColor: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        ]
-        let attributedString = NSAttributedString(string: "Flips: \(flipCount)", attributes: attributes)
-        flipCountLabel.attributedText = attributedString
     }
     
     @IBOutlet private weak var flipCountLabel: UILabel! {
@@ -48,7 +45,32 @@ class ConcentrationViewController: UIViewController {
             updateViewFromModel()
         }
     }
+    
+    private var emojiChoices = "👻🎃🍎🍭🙀🙈"
+    
+    private var emoji = [Card: String]()
+    
+    private func emoji(for card: Card) -> String {
+        if emoji[card] == nil, emojiChoices.count > 0 {
+            let randomStringIndex = emojiChoices.index(emojiChoices.startIndex, offsetBy: emojiChoices.count.arc4random)
+            emoji[card] = String(emojiChoices.remove(at: randomStringIndex))
+        }
+        return emoji[card] ?? "?"
+    }
 
+}
+
+// private and help functions
+extension ConcentrationViewController {
+    private func updateFlipCountLabel() {
+        let attributes: [NSAttributedStringKey: Any] = [
+            .strokeWidth: 2.0,
+            .strokeColor: theme?.foregroundColor ?? #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        ]
+        let attributedString = NSAttributedString(string: "Flips: \(flipCount)", attributes: attributes)
+        flipCountLabel.attributedText = attributedString
+    }
+    
     private func updateViewFromModel() {
         guard cardButtons != nil else { return }
         
@@ -63,31 +85,22 @@ class ConcentrationViewController: UIViewController {
                 button.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
             } else {
                 button.setTitle("", for: .normal)
-                button.backgroundColor = card.isMatched ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0) : #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)
+                button.backgroundColor = card.isMatched ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0) : theme?.foregroundColor ?? #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)
             }
         }
     }
     
-    var theme: String? {
-        didSet {
-            emojiChoices = theme ?? ""
-            emoji = [:]
-            updateViewFromModel()
-        }
+    private func applyTheme() {
+        guard let theme = theme else { return }
+        
+        view.backgroundColor = theme.backgroundColor
+        scoreLabel.textColor = theme.foregroundColor
+        updateFlipCountLabel()
+        
+        emojiChoices = theme.emojiChoices
+        emoji = [:]
+        updateViewFromModel()
     }
-    
-    private var emojiChoices = "👻🎃🍎🍭🙀🙈"
-    
-    private var emoji = [Card: String]()
-    
-    private func emoji(for card: Card) -> String {
-        if emoji[card] == nil, emojiChoices.count > 0 {
-            let randomStringIndex = emojiChoices.index(emojiChoices.startIndex, offsetBy: emojiChoices.count.arc4random)
-            emoji[card] = String(emojiChoices.remove(at: randomStringIndex))
-        }
-        return emoji[card] ?? "?"
-    }
-
 }
 
 extension Int {

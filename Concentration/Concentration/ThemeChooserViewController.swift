@@ -16,13 +16,6 @@ class ThemeChooserViewController: UIViewController, UISplitViewControllerDelegat
     
     private var lastSequedToConcentrationViewController: ConcentrationViewController?
     
-    let themes = [
-        "Sports" : "🏋️‍♂️🥊⚽️🏀🏈⚾️🎾🏐⛳️🏉",
-        "Animals" : "🐶🦊🙈🐴🐌🐤🐼🐹🐭🐯",
-        "Faces" : "👳‍♀️💆‍♀️🙅‍♂️👷‍♂️👨‍👧👶😂😅😉😏",
-        "Halloween" : "👻🎃🍎🍭🙀🙈👹👺👿🧣"
-    ]
-    
     @IBAction func changeTheme(_ sender: Any) {
         guard let button = sender as? UIButton else { return }
     
@@ -36,8 +29,8 @@ class ThemeChooserViewController: UIViewController, UISplitViewControllerDelegat
         }
     }
     
-    private func themeFromButtonTitle(button: UIButton) -> String? {
-        if let themeName = button.currentTitle, let theme = themes[themeName] {
+    private func themeFromButtonTitle(button: UIButton) -> Theme? {
+        if let themeName = button.currentTitle, let theme = Theme.themeByTitle(title: themeName) {
             return theme
         }
         
@@ -45,6 +38,7 @@ class ThemeChooserViewController: UIViewController, UISplitViewControllerDelegat
     }
     
     private func setThemeForViewControllerIfValid(viewController: ConcentrationViewController, button: UIButton) {
+        // todo: reconsider, theme selection from button title?
         if let theme = themeFromButtonTitle(button: button) {
             viewController.theme = theme
         }
@@ -54,7 +48,7 @@ class ThemeChooserViewController: UIViewController, UISplitViewControllerDelegat
         guard let button = sender as? UIButton else { return }
         
         if segue.identifier == "Choose Theme" {
-            if let themeName = button.currentTitle, let theme = themes[themeName] {
+            if let themeName = button.currentTitle, let theme = Theme.themeByTitle(title: themeName) {
                 if let concentrationViewController = segue.destination as? ConcentrationViewController {
                     concentrationViewController.theme = theme
                     lastSequedToConcentrationViewController = concentrationViewController
