@@ -51,7 +51,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A313BE272094EE4A0090120B /* HelpExtenstions */ = {
+		A313BE272094EE4A0090120B /* HelpExtensions */ = {
 			isa = PBXGroup;
 			children = (
 				A313BE282094EE7C0090120B /* Int.swift */,
@@ -59,7 +59,7 @@
 				A313BE2C2094EEEF0090120B /* MutableCollection.swift */,
 				A313BE2E2094EF1F0090120B /* Sequence.swift */,
 			);
-			path = HelpExtenstions;
+			path = HelpExtensions;
 			sourceTree = "<group>";
 		};
 		A31E9FA71FC329DB0065130B = {
@@ -86,7 +86,7 @@
 				A31E9FC81FC606AA0065130B /* Card.swift */,
 				A31E9FB51FC329DB0065130B /* ConcentrationViewController.swift */,
 				A3AECB95208A810A0018D82B /* ThemeChooserViewController.swift */,
-				A313BE272094EE4A0090120B /* HelpExtenstions */,
+				A313BE272094EE4A0090120B /* HelpExtensions */,
 				A31E9FC51FC32FE80065130B /* Supporting files */,
 				A31E9FB71FC329DB0065130B /* Main.storyboard */,
 				A31E9FBF1FC329DB0065130B /* Info.plist */,
