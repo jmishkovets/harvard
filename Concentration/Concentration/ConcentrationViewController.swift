@@ -47,6 +47,7 @@ class ConcentrationViewController: UIViewController {
     @IBAction func newGameClicked(_ sender: Any) {
         newGameButton.isHidden = true
         game = Concentration(numberOfPairsOfCards: numberOfPairsOfCards)
+        flipCount = 0
         updateViewFromModel()
     }
     
@@ -109,7 +110,6 @@ extension ConcentrationViewController {
     
     private func handleGameCompletion() {
         newGameButton.isHidden = false
-        flipCount = 0
     }
     
     private func applyTheme() {
