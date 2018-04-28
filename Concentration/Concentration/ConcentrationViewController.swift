@@ -38,6 +38,14 @@ class ConcentrationViewController: UIViewController {
     
     @IBOutlet private var cardButtons: [UIButton]!
     
+    @IBOutlet weak var newGameButton: UIButton!
+    
+    @IBAction func newGameClicked(_ sender: Any) {
+        newGameButton.isHidden = true
+        game = Concentration(numberOfPairsOfCards: numberOfPairsOfCards)
+        updateViewFromModel()
+    }
+    
     @IBAction private func touchCard(_ sender: UIButton) {
         flipCount += 1
         if let cardNumber = cardButtons.index(of: sender) {
@@ -76,6 +84,14 @@ extension ConcentrationViewController {
         
         scoreLabel.text = "Score: \(game.score)"
         
+        if game.isGameCompleted {
+            handleGameCompletion()
+        }
+        
+        updateCards()
+    }
+    
+    private func updateCards() {
         for index in cardButtons.indices {
             let button = cardButtons[index]
             let card = game.cards[index]
@@ -90,11 +106,18 @@ extension ConcentrationViewController {
         }
     }
     
+    private func handleGameCompletion() {
+        newGameButton.isHidden = false
+        flipCount = 0
+    }
+    
     private func applyTheme() {
         guard let theme = theme else { return }
         
         view.backgroundColor = theme.backgroundColor
         scoreLabel.textColor = theme.foregroundColor
+        newGameButton.backgroundColor = theme.foregroundColor
+        newGameButton.setTitleColor(theme.backgroundColor, for: .normal)
         updateFlipCountLabel()
         
         emojiChoices = theme.emojiChoices

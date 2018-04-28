@@ -227,12 +227,22 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vlG-Pa-dzz" userLabel="New Game Button">
+                                <rect key="frame" x="104" y="380.66666666666669" width="166" height="51"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <state key="normal" title=" New Game "/>
+                                <connections>
+                                    <action selector="newGameClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Yp1-DQ-xeL"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="dl8-Nj-XUo" secondAttribute="bottom" constant="13" id="1Zk-Qi-xHH"/>
                             <constraint firstItem="xOR-Dp-DpU" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="83I-jy-kcM"/>
+                            <constraint firstItem="vlG-Pa-dzz" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="9TZ-8v-NZa"/>
                             <constraint firstItem="xOR-Dp-DpU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Gu9-rO-n9U"/>
+                            <constraint firstItem="vlG-Pa-dzz" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Xgz-yG-TrZ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="xOR-Dp-DpU" secondAttribute="trailing" constant="16" id="gs8-Nf-F9N"/>
                             <constraint firstItem="dl8-Nj-XUo" firstAttribute="top" secondItem="P76-B3-dQM" secondAttribute="bottom" constant="15" id="iPG-q8-7AB"/>
                             <constraint firstItem="dl8-Nj-XUo" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="jpU-RP-sQq"/>
@@ -243,6 +253,7 @@
                     </view>
                     <connections>
                         <outlet property="flipCountLabel" destination="P76-B3-dQM" id="HxF-Vz-xEt"/>
+                        <outlet property="newGameButton" destination="vlG-Pa-dzz" id="RYu-A3-UId"/>
                         <outlet property="scoreLabel" destination="dl8-Nj-XUo" id="UkA-RJ-XrO"/>
                         <outletCollection property="cardButtons" destination="gc8-JU-hA5" collectionClass="NSMutableArray" id="0yd-E4-COg"/>
                         <outletCollection property="cardButtons" destination="IRh-u7-hAi" collectionClass="NSMutableArray" id="o9y-r4-wDd"/>
