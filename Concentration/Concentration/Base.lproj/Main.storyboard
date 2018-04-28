@@ -96,7 +96,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="xOR-Dp-DpU">
-                                <rect key="frame" x="16" y="88" width="343" height="232"/>
+                                <rect key="frame" x="16" y="104" width="343" height="232"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="mIc-Hk-kxh">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="72"/>
@@ -216,7 +216,13 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flips: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P76-B3-dQM">
-                                <rect key="frame" x="125.66666666666666" y="681" width="123.66666666666666" height="48"/>
+                                <rect key="frame" x="126" y="605" width="123.66666666666669" height="48"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dl8-Nj-XUo">
+                                <rect key="frame" x="116.33333333333333" y="668" width="142.66666666666669" height="48"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -224,10 +230,12 @@
                         </subviews>
                         <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="xOR-Dp-DpU" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="83I-jy-kcM"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="dl8-Nj-XUo" secondAttribute="bottom" constant="13" id="1Zk-Qi-xHH"/>
+                            <constraint firstItem="xOR-Dp-DpU" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="83I-jy-kcM"/>
                             <constraint firstItem="xOR-Dp-DpU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Gu9-rO-n9U"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="xOR-Dp-DpU" secondAttribute="trailing" constant="16" id="gs8-Nf-F9N"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="P76-B3-dQM" secondAttribute="bottom" id="js4-R9-88W"/>
+                            <constraint firstItem="dl8-Nj-XUo" firstAttribute="top" secondItem="P76-B3-dQM" secondAttribute="bottom" constant="15" id="iPG-q8-7AB"/>
+                            <constraint firstItem="dl8-Nj-XUo" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="jpU-RP-sQq"/>
                             <constraint firstItem="P76-B3-dQM" firstAttribute="top" relation="greaterThanOrEqual" secondItem="xOR-Dp-DpU" secondAttribute="bottom" constant="8" symbolic="YES" id="ruQ-9y-Rqs"/>
                             <constraint firstItem="P76-B3-dQM" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="u9h-jm-329"/>
                         </constraints>
@@ -235,6 +243,7 @@
                     </view>
                     <connections>
                         <outlet property="flipCountLabel" destination="P76-B3-dQM" id="HxF-Vz-xEt"/>
+                        <outlet property="scoreLabel" destination="dl8-Nj-XUo" id="UkA-RJ-XrO"/>
                         <outletCollection property="cardButtons" destination="gc8-JU-hA5" collectionClass="NSMutableArray" id="0yd-E4-COg"/>
                         <outletCollection property="cardButtons" destination="IRh-u7-hAi" collectionClass="NSMutableArray" id="o9y-r4-wDd"/>
                         <outletCollection property="cardButtons" destination="FWE-jY-eJg" collectionClass="NSMutableArray" id="QiJ-0Y-Uin"/>

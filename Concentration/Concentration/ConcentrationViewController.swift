@@ -24,7 +24,7 @@ class ConcentrationViewController: UIViewController {
     
     private func updateFlipCountLabel() {
         let attributes: [NSAttributedStringKey: Any] = [
-            .strokeWidth: 5.0,
+            .strokeWidth: 1.0,
             .strokeColor: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         ]
         let attributedString = NSAttributedString(string: "Flips: \(flipCount)", attributes: attributes)
@@ -36,6 +36,8 @@ class ConcentrationViewController: UIViewController {
             updateFlipCountLabel()
         }
     }
+    
+    @IBOutlet weak var scoreLabel: UILabel!
     
     @IBOutlet private var cardButtons: [UIButton]!
     
@@ -49,6 +51,8 @@ class ConcentrationViewController: UIViewController {
 
     private func updateViewFromModel() {
         guard cardButtons != nil else { return }
+        
+        scoreLabel.text = "Score: \(game.score)"
         
         for index in cardButtons.indices {
             let button = cardButtons[index]
