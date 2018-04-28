@@ -28,6 +28,10 @@ class ConcentrationViewController: UIViewController {
         }
     }
     
+    private var emojiChoices = ""
+    
+    private var emoji = [Card: String]()
+    
     @IBOutlet private weak var flipCountLabel: UILabel! {
         didSet {
             updateFlipCountLabel()
@@ -53,10 +57,11 @@ class ConcentrationViewController: UIViewController {
             updateViewFromModel()
         }
     }
-    
-    private var emojiChoices = "👻🎃🍎🍭🙀🙈"
-    
-    private var emoji = [Card: String]()
+
+}
+
+// private and help functions
+extension ConcentrationViewController {
     
     private func emoji(for card: Card) -> String {
         if emoji[card] == nil, emojiChoices.count > 0 {
@@ -65,11 +70,7 @@ class ConcentrationViewController: UIViewController {
         }
         return emoji[card] ?? "?"
     }
-
-}
-
-// private and help functions
-extension ConcentrationViewController {
+    
     private func updateFlipCountLabel() {
         let attributes: [NSAttributedStringKey: Any] = [
             .strokeWidth: 2.0,
@@ -124,21 +125,6 @@ extension ConcentrationViewController {
         emoji = [:]
         updateViewFromModel()
     }
-}
 
-extension Int {
-    
-    var arc4random: Int {
-        if self == 0 {
-            return 0
-        }
-        
-        if self > 0 {
-            return Int(arc4random_uniform(UInt32(self)))
-        } else {
-            return -Int(arc4random_uniform(UInt32(abs(self))))
-        }
-    }
-    
 }
 

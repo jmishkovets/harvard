@@ -14,7 +14,7 @@ struct Concentration {
     
     var isGameCompleted: Bool {
         get {
-            // todo: use map to check items
+            // todo: use filter?
             for card in cards {
                 if !card.isMatched {
                     return false
@@ -74,31 +74,4 @@ struct Concentration {
         }
     }
     
-}
-
-// todo: move to a separate file
-extension Collection {
-    var oneAndOnly: Element? {
-        return count == 1 ? first : nil
-    }
-}
-
-extension MutableCollection {
-    mutating func shuffle() {
-        guard count > 1 else { return }
-        
-        for (firstUnshuffled, unshuffledCount) in zip(indices, stride(from: count, to: 1, by: -1)) {
-            let d: Int = numericCast(arc4random_uniform(numericCast(unshuffledCount)))
-            let i = index(firstUnshuffled, offsetBy: d)
-            swapAt(firstUnshuffled, i)
-        }
-    }
-}
-
-extension Sequence {
-    func shuffled() -> [Element] {
-        var result = Array(self)
-        result.shuffle()
-        return result
-    }
 }

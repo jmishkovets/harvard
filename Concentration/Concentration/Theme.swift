@@ -8,6 +8,7 @@
 import UIKit
 
 enum Theme: Int {
+    
     case sports
     case animals
     case faces

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ThemeChooserViewController: UIViewController, UISplitViewControllerDelegate {
+class ThemeChooserViewController: UIViewController {
     
     private var splitViewDetailConcentrationViewController: ConcentrationViewController? {
         return splitViewController?.viewControllers.last as? ConcentrationViewController
@@ -29,21 +29,6 @@ class ThemeChooserViewController: UIViewController, UISplitViewControllerDelegat
         }
     }
     
-    private func themeFromButtonTitle(button: UIButton) -> Theme? {
-        if let themeName = button.currentTitle, let theme = Theme.themeByTitle(title: themeName) {
-            return theme
-        }
-        
-        return nil
-    }
-    
-    private func setThemeForViewControllerIfValid(viewController: ConcentrationViewController, button: UIButton) {
-        // todo: reconsider, theme selection from button title?
-        if let theme = themeFromButtonTitle(button: button) {
-            viewController.theme = theme
-        }
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let button = sender as? UIButton else { return }
         
@@ -60,6 +45,10 @@ class ThemeChooserViewController: UIViewController, UISplitViewControllerDelegat
     override func awakeFromNib() {
         splitViewController?.delegate = self
     }
+
+}
+
+extension ThemeChooserViewController: UISplitViewControllerDelegate {
     
     func splitViewController(_ splitViewController: UISplitViewController,
                              collapseSecondary secondaryViewController: UIViewController,
@@ -71,5 +60,25 @@ class ThemeChooserViewController: UIViewController, UISplitViewControllerDelegat
         }
         return true
     }
+    
+}
 
+// private and help functions
+extension ThemeChooserViewController {
+    
+    private func themeFromButtonTitle(button: UIButton) -> Theme? {
+        if let themeName = button.currentTitle, let theme = Theme.themeByTitle(title: themeName) {
+            return theme
+        }
+        
+        return nil
+    }
+    
+    private func setThemeForViewControllerIfValid(viewController: ConcentrationViewController, button: UIButton) {
+        // todo: reconsider, theme selection from button title?
+        if let theme = themeFromButtonTitle(button: button) {
+            viewController.theme = theme
+        }
+    }
+    
 }
